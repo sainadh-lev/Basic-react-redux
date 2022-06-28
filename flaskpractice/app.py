@@ -11,7 +11,7 @@ from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 from pyhpo import Ontology
 import random
-import tempcode
+from tempcode import *
 
 
 
@@ -142,10 +142,13 @@ class Documents(Resource):
     def getdocuments(self,noofdocuments,setofphenotypes=[]):
         list1 = []
         noofdocument = int(noofdocuments["nofdocs"])
+        # return setofphenotypes
+        inputterms = list(setofphenotypes['phenotypes'])
         # for i in range(0,noofdocument):
-        #     list1.append({'link':f'http://www.w3.org/2001/XMLSchema-instance{i}', 'score':random.randint(0,100)})
-        list1 = sorted(list1, key=lambda d: d['score'], reverse=True) 
-        list1=tempcode.response[:noofdocument]
+        #     list1.append({'link':f'http://www.w3.org/2001/XMLSchema-instance{i}', 'score':random.randint(0,100)}) 
+        hellobrother(inputterms)
+        list1 = sorted(response, key=lambda d: d['score'], reverse=True)
+        list1 = list1[:noofdocument]
         return list1
     
 
